@@ -1,7 +1,8 @@
-package com.example.app
+package com.example.app.base
 
 import android.app.Application
 import androidx.room.Room
+import com.example.app.di.AppComponents
 import com.example.core.db.UserDAO
 import com.example.core.db.UserDB
 import org.koin.android.ext.koin.androidContext
@@ -15,15 +16,19 @@ class BaseApp: Application() {
         startKoin {
             androidLogger()
             androidContext(this@BaseApp)
-            modules( ) // TODO add modules
+            modules(
+                AppComponents().appModule,  // Application module
+                AppComponents().apiModule,  // Remote data module
+                AppComponents().coreModule  // DB module
+            )
         }
     }
     companion object{
-        private var appInstance: BaseApp? = null
+        var appInstance: BaseApp? = null
 
         private var db: UserDB? = null
         private const val DB_NAME = "UserData.db"
-        fun getHistoryDAO(): UserDAO {
+        fun getUserDAO(): UserDAO {
             if (db == null) {
                 synchronized(UserDB::class.java) {
                     if (db == null) {

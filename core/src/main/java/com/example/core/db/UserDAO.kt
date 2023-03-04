@@ -10,8 +10,8 @@ interface UserDAO {
     @Insert(onConflict = ABORT)
     fun insert(entity: UserEntity)
 
-    @Query("SELECT * FROM UserDataEntity WHERE name LIKE :name ORDER BY timestamp DESC")
-    fun getUserByName(name: String): Single<UserEntity>
+    @Query("SELECT * FROM UserEntity WHERE firstName LIKE :firstName")
+    fun getUserByName(firstName: String): Single<UserEntity>
 
     @Delete
     fun delete(entity: UserEntity)
