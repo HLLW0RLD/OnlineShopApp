@@ -13,6 +13,21 @@
     <string name="sign_in_with_apple">Sign in with Apple</string>
 
     <!-- Log in -->
+    <string name="tv_log_in_title">Welcome back</string>
+    <string name="et_password">Password</string>
 
+    <!-- Page One -->
+    <string name="main_title">Trade by  <font color='#254FE6'>bata</font></string>
+    <string name="chip_phones">Phones</string>
+    <string name="chip_headphones">Headphones</string>
+    <string name="chip_games">Games</string>
+    <string name="chip_cars">Cars</string>
+    <string name="chip_furniture">Furniture</string>
+    <string name="chip_kids">Kids</string>
+    <string name="title_latest">Latest</string>
+    <string name="title_flash_sales">Flash sales</string>
+    <string name="title_brands">Brands</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="view_all">View all</string>
 
 </resources>

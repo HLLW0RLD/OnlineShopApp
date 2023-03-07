@@ -1,27 +1,26 @@
 package com.example.features.view
 
 import android.os.Bundle
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.example.app.domain.ILocalService
+import androidx.fragment.app.viewModels
 import com.example.app.utils.Constants.SIGN_IN_TAG
 import com.example.app.utils.Helper
 import com.example.features.R
 import com.example.features.databinding.FragmentSignInPageBinding
-import org.koin.android.ext.android.inject
+import com.example.features.viewModel.SignInViewModel
 
 class SignInPageFragment : Fragment() {
     companion object {
         fun newInstance() = SignInPageFragment()
     }
 
-    var binding: FragmentSignInPageBinding? = null
-    private val localService: ILocalService by inject()
+    private var binding: FragmentSignInPageBinding? = null
+    private val viewModel: SignInViewModel by viewModels<SignInViewModel>()
 
     private var firstName: String? = null
     private var lastName: String? = null
@@ -37,11 +36,12 @@ class SignInPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding?.apply {
             tvLogin.setOnClickListener {
                 activity?.supportFragmentManager?.apply {
                     beginTransaction()
-                        .add(R.id.container, PageOneFragment.newInstance())
+                        .add(R.id.container, LogInFragment.newInstance())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
@@ -60,31 +60,45 @@ class SignInPageFragment : Fragment() {
             }
 
             btnSignIn.setOnClickListener {
-               if (isFieldsEmpty()) {
+                if (isFieldsEmpty()) {
                     if (!checkEmail(email)) {
                         Helper.toastShort("Email address not valid")
                     } else {
                         if (firstName != null && lastName != null && email != null) {
-                            localService.insert(firstName!!, lastName!!, email!!)
-                            activity?.supportFragmentManager?.apply {
-                                beginTransaction()
-                                    .add(R.id.container, LogInFragment.newInstance())
-                                    .addToBackStack("")
-                                    .commitAllowingStateLoss()
+                            viewModel.isUserSaved.observe(viewLifecycleOwner) {
+                                checkSavedUser(it)
                             }
+                            viewModel.getUserByName(firstName)
                         }
                     }
                 } else {
-                   Helper.toastShort("Not all fields are filled")
-               }
+                    Helper.toastShort("Not all fields are filled")
+                }
+            }
+            viewModel.firstNameLiveData.observe(viewLifecycleOwner) { etFirstName.text }
+            viewModel.lastNameLiveData.observe(viewLifecycleOwner) { etLastName.text }
+            viewModel.emailLiveData.observe(viewLifecycleOwner) { etEmail.text }
+        }
+    }
+
+    private fun checkSavedUser(checked: Boolean) {
+        if (!checked){
+            Log.d(SIGN_IN_TAG, "checkSavedUser() user not exist")
+            Helper.hideKeyboard(this)
+            viewModel.saveUserData(firstName, lastName, email)
+            activity?.supportFragmentManager?.apply {
+                beginTransaction()
+                    .add(R.id.container, PageOneFragment.newInstance())
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
             }
         }
     }
 
     private fun isFieldsEmpty(): Boolean{
-        firstName = binding?.etFirstName?.text.toString()
-        lastName = binding?.etLastName?.text.toString()
-        email = binding?.etEmail?.text.toString()
+        firstName = binding?.etFirstName?.text.toString().replace(" ", "")
+        lastName = binding?.etLastName?.text.toString().replace(" ", "")
+        email = binding?.etEmail?.text.toString().replace(" ", "")
 
         if (firstName?.trim()?.isNotEmpty() == true
             && lastName?.trim()?.isNotEmpty() == true

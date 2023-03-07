@@ -4,7 +4,6 @@ import com.example.core.db.UserDAO
 import com.example.core.db.UserEntity
 import io.reactivex.rxjava3.core.Single
 
-/*TODO make reactive after success testing of actual insert() and delete()*/
 class LocalRepository(val dao: UserDAO): ILocalRepository {
 
     override fun insert(data: UserEntity) {

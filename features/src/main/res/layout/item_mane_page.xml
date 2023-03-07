@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="false">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_base"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_main_menu" />
+
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="100dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/main_title"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/sv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="47dp"
+            android:background="@drawable/ic_avatar_background"
+            android:scaleType="centerCrop" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Location"
+        android:textSize="10sp"
+        android:drawablePadding="2dp"
+        android:layout_marginTop="7dp"
+        android:paddingEnd="37dp"
+        app:layout_constraintTop_toBottomOf="@id/tb_base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:drawableEndCompat="@drawable/ic_arrow_location" />
+
+    <EditText
+        android:id="@+id/tv_main_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="57dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/ic_main_search_background"
+        android:gravity="center"
+        android:hint="@string/what_are_you_looking_for"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/nsv_chips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+    <HorizontalScrollView
+        android:id="@+id/nsv_chips"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="17dp"
+        android:scrollbars="none"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_main_search">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="7.5dp">
+
+            <include layout="@layout/chip_item_phones" />
+
+            <include layout="@layout/chip_item_headphones" />
+
+            <include layout="@layout/chip_item_games" />
+
+            <include layout="@layout/chip_item_cars" />
+
+            <include layout="@layout/chip_item_furniture" />
+
+            <include layout="@layout/chip_item_kids" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/tv_latest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/title_latest"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nsv_chips" />
+
+    <TextView
+        android:id="@+id/tv_all_latest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="11dp"
+        android:paddingBottom="14dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/view_all"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_latest"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_latest"
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_flash_sales"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_latest" />
+
+    <TextView
+        android:id="@+id/tv_flash_sales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/title_flash_sales"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_latest"/>
+
+    <TextView
+        android:id="@+id/tv_all_flash_sales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="11dp"
+        android:paddingBottom="9dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/view_all"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_flash_sales"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_flash_sales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_flash_sales" />
+
+    <TextView
+        android:id="@+id/tv_brands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/title_brands"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_flash_sales"/>
+
+    <TextView
+        android:id="@+id/tv_all_brands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="11dp"
+        android:paddingBottom="9dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/view_all"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_brands"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_brands"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_brands" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
