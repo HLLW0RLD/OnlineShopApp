@@ -15,10 +15,9 @@ import org.koin.core.component.inject
 
 class LogInViewModel : ViewModel(), KoinComponent {
 
+    val isUserSaved: MutableLiveData<Boolean> = MutableLiveData()
     private val localService: ILocalService by inject()
     private val disposable: CompositeDisposable = CompositeDisposable()
-
-    val isUserSaved: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getUserByName(name: String?) {
         if (name != null) {

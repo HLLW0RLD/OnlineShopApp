@@ -8,7 +8,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.api.data.ProductDTO
 import com.example.app.base.BaseApp
+import com.example.app.base.Product
+import io.reactivex.rxjava3.core.Single
 
 object Helper {
 
@@ -41,5 +44,11 @@ object Helper {
     fun hideKeyboard(fragment: Fragment) {
         val activity: Activity? = fragment.activity
         activity?.let { hideKeyboard(it) }
+    }
+
+    fun convertDtoToData(dto: ProductDTO): Single<List<Product>> {
+        val products = mutableListOf<Product>()
+        products.add(Product(dto.category, dto.name, dto.price, dto.discount, dto.image_url))
+        return Single.just(products)
     }
 }

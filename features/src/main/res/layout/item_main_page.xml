@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:clipToPadding="false">
 
     <androidx.appcompat.widget.Toolbar
@@ -131,8 +132,9 @@
         android:id="@+id/rv_latest"
         android:layout_width="match_parent"
         android:layout_height="149dp"
-        android:layout_marginStart="11dp"
+        android:paddingStart="11dp"
         android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_rv_latest"
         app:layout_constraintBottom_toTopOf="@+id/tv_flash_sales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,9 +168,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_flash_sales"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:layout_height="221dp"
+        android:paddingStart="11dp"
         android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_rv_flash_sales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_flash_sales" />
@@ -202,8 +205,9 @@
         android:id="@+id/rv_brands"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:paddingStart="11dp"
         android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_rv_brands"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_brands" />

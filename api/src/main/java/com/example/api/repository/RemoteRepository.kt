@@ -1,17 +1,17 @@
 package com.example.api.repository
 
-import com.example.api.data.FlashSale
-import com.example.api.data.Latest
+import com.example.api.data.FlashSaleDTO
+import com.example.api.data.LatestDTO
 import com.example.api.remote.ProductApi
 import io.reactivex.rxjava3.core.Single
 
 class RemoteRepository(val api: ProductApi): IRemoteRepository {
 
-    override fun getLatest(): Single<Latest> {
+    override fun getLatest(): Single<LatestDTO> {
         return  api.getLatest()
     }
 
-    override fun getFlashSale(): Single<FlashSale> {
+    override fun getFlashSale(): Single<FlashSaleDTO> {
         return api.getFlashSale()
     }
 }
