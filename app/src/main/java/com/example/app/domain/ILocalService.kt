@@ -8,5 +8,5 @@ interface ILocalService {
 
     fun getUserByName(name: String): Single<UserEntity>
 
-    fun delete(firstName: String, lastName: String, email: String)
+    fun delete(firstName: String)
 }

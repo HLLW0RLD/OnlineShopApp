@@ -75,9 +75,9 @@ class SignInPageFragment : Fragment() {
                     Helper.toastShort("Not all fields are filled")
                 }
             }
-            viewModel.firstNameLiveData.observe(viewLifecycleOwner) { etFirstName.text }
-            viewModel.lastNameLiveData.observe(viewLifecycleOwner) { etLastName.text }
-            viewModel.emailLiveData.observe(viewLifecycleOwner) { etEmail.text }
+            viewModel.firstNameLiveData.observe(viewLifecycleOwner) { etFirstName.text.toString().replace(" ", "") }
+            viewModel.lastNameLiveData.observe(viewLifecycleOwner) { etLastName.text.toString().replace(" ", "") }
+            viewModel.emailLiveData.observe(viewLifecycleOwner) { etEmail.text.toString().replace(" ", "") }
         }
     }
 

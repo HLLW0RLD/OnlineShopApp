@@ -23,7 +23,7 @@
     <EditText
         android:id="@+id/et_first_name"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="42dp"
         android:layout_marginTop="72dp"
         android:background="@drawable/ic_rectangle_background_grey"
@@ -38,28 +38,41 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
 
-    <EditText
-        android:id="@+id/et_password"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="42dp"
         android:layout_marginTop="35dp"
-        android:background="@drawable/ic_rectangle_background_grey"
-        android:focusableInTouchMode="true"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/password_text_gray"
         android:hint="@string/et_password"
-        android:inputType="textPassword"
-        android:textColor="@color/main_text_gray"
-        android:textSize="11sp"
+        android:textColorHint="@color/main_text_gray"
+        app:hintTextColor="@color/main_text_gray"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_first_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_first_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_rectangle_background_grey"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal"
+            android:paddingStart="55dp"
+            android:inputType="textPassword"
+            android:textSize="11sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_log_in"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginHorizontal="42dp"
         android:layout_marginTop="35dp"
         android:background="@drawable/ic_rectangle_background_blue"
@@ -72,6 +85,6 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintTop_toBottomOf="@+id/til_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -78,7 +78,7 @@
         <Button
             android:id="@+id/btn_sign_in"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:layout_marginTop="35dp"
             android:gravity="center"
             android:focusableInTouchMode="true"
@@ -125,56 +125,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
 
-        <ImageView
-            android:id="@+id/iv_google"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_google_logo"
             android:layout_marginTop="70dp"
             android:layout_marginStart="99dp"
-            android:layout_marginEnd="11dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_sign_with_google"
-            app:layout_constraintTop_toBottomOf="@+id/tv_subtext" />
-
-        <TextView
-            android:id="@+id/tv_sign_with_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:background="@drawable/ic_ripple_background_white"
+            android:fontFamily="@font/montserrat"
             android:text="@string/sign_in_with_google"
-            android:fontFamily="@font/montserrat"
-            android:textSize="12sp"
+            android:textAllCaps="false"
             android:textColor="@color/black"
-            android:layout_marginTop="76dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_google_logo"
+            app:iconTint="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_subtext" />
 
-        <ImageView
-            android:id="@+id/iv_apple"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_apple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_apple_logo"
-            android:layout_marginTop="38dp"
-            android:layout_marginStart="99dp"
-            android:layout_marginEnd="11dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_sign_with_apple"
-            app:layout_constraintTop_toBottomOf="@+id/iv_google" />
-
-        <TextView
-            android:id="@+id/tv_sign_with_apple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:background="@drawable/ic_ripple_background_white"
+            app:icon="@drawable/ic_apple_logo"
+            app:iconTint="@color/black"
             android:text="@string/sign_in_with_apple"
+            android:textAllCaps="false"
             android:fontFamily="@font/montserrat"
             android:textSize="12sp"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="99dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sign_with_google" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_google" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

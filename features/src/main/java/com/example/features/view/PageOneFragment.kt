@@ -7,9 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.app.utils.hide
+import com.example.app.utils.show
+import com.example.features.R
 import com.example.features.adapter.FlashSalesAdapter
 import com.example.features.adapter.LatestAdapter
 import com.example.features.databinding.FragmentPageOneBinding
+import com.example.features.utils.FlashSalesRvState
+import com.example.features.utils.LatestRvState
 import com.example.features.viewModel.PageOneViewModel
 
 class PageOneFragment : Fragment() {
@@ -33,22 +38,63 @@ class PageOneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.apply {
-            mainPage.rvLatest.adapter = latestAdapter
-            mainPage.rvFlashSales.adapter = flashSalesAdapter
+        binding?.mainPage?.apply {
+            rvLatest.adapter = latestAdapter
+            rvFlashSales.adapter = flashSalesAdapter
 
-            mainPage.rvLatest.layoutManager =
+            rvLatest.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            mainPage.rvFlashSales.layoutManager =
+            rvFlashSales.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            mainPage.rvBrands.layoutManager =
+            rvBrands.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        latestViewModel.latest.observe(viewLifecycleOwner) { latestAdapter.setData(it) }
+        binding?.apply {
+            bnvMain.also {
+                it.setOnItemSelectedListener { item ->
+                    when(item.itemId) {
+                        R.id.btn_profile -> {
+                            activity?.supportFragmentManager
+                                ?.beginTransaction()
+                                ?.replace(R.id.container, ProfileFragment.newInstance())
+                                ?.commitAllowingStateLoss()
+                        }
+                    }
+                    true
+                }
+            }
+        }
+
+        latestViewModel.latest.observe(viewLifecycleOwner) { renderLatestState(it) }
         latestViewModel.getLatest()
 
-        latestViewModel.flashSales.observe(viewLifecycleOwner) { flashSalesAdapter.setData(it) }
+        latestViewModel.flashSales.observe(viewLifecycleOwner) { renderFlashSalesState(it) }
         latestViewModel.getFlashSales()
     }
+
+    private fun renderLatestState(data: LatestRvState){
+        when(data){
+            is LatestRvState.Loading -> {
+                binding?.mainPage?.pbLatest?.show()
+            }
+            is LatestRvState.Success -> {
+                binding?.mainPage?.pbLatest?.hide()
+                latestAdapter.setData(data.productData)
+            }
+        }
+    }
+
+    private fun renderFlashSalesState(data: FlashSalesRvState){
+        when(data){
+            is FlashSalesRvState.Loading -> {
+                binding?.mainPage?.pbFlashSales?.show()
+            }
+            is FlashSalesRvState.Success -> {
+                binding?.mainPage?.pbFlashSales?.hide()
+                flashSalesAdapter.setData(data.productData)
+            }
+        }
+    }
 }
+

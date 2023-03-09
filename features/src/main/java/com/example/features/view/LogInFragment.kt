@@ -42,12 +42,12 @@ class LogInFragment : Fragment() {
                 btnLogIn.isEnabled = isFieldsEmpty()
             }
 
-            etPassword.addTextChangedListener {
+            tietPassword.addTextChangedListener {
                 btnLogIn.isEnabled = isFieldsEmpty()
             }
 
             btnLogIn.setOnClickListener {
-                firstName = binding?.etFirstName?.text.toString()
+                firstName = binding?.etFirstName?.text.toString().replace(" ", "")
                 viewModel.isUserSaved.observe(viewLifecycleOwner) {
                     checkSavedUser(it)
                 }
@@ -69,8 +69,8 @@ class LogInFragment : Fragment() {
     }
 
     private fun isFieldsEmpty(): Boolean {
-        firstName = binding?.etFirstName?.text.toString()
-        password = binding?.etPassword?.text.toString()
+        firstName = binding?.etFirstName?.text.toString().replace(" ", "")
+        password = binding?.tietPassword?.text.toString().replace(" ", "")
 
         if (firstName?.trim()?.isNotEmpty() == true
             && password?.trim()?.isNotEmpty() == true

@@ -3,10 +3,10 @@ package com.example.features.viewModel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.app.base.Product
 import com.example.app.domain.IRemoteService
 import com.example.app.utils.Constants.PAGE_ONE_TAG
-import com.example.app.utils.Helper
+import com.example.features.utils.FlashSalesRvState
+import com.example.features.utils.LatestRvState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -18,10 +18,11 @@ class PageOneViewModel : ViewModel(), KoinComponent {
 
     private val remoteService: IRemoteService by inject()
     private val disposable: CompositeDisposable = CompositeDisposable()
-    val latest: MutableLiveData<List<Product>> = MutableLiveData()
-    val flashSales: MutableLiveData<List<Product>> = MutableLiveData()
+    val latest: MutableLiveData<LatestRvState> = MutableLiveData()
+    val flashSales: MutableLiveData<FlashSalesRvState> = MutableLiveData()
 
     fun getLatest() {
+        latest.value = LatestRvState.Loading
         disposable.add(
             remoteService
                 .getLatest()
@@ -30,7 +31,9 @@ class PageOneViewModel : ViewModel(), KoinComponent {
                 .subscribeBy(
                     onNext = {
                         Log.d(PAGE_ONE_TAG, "getLatest() -> vm: $it")
-                        latest.postValue(it)
+                        latest.postValue(
+                            LatestRvState.Success(it)
+                        )
                     },
                     onError = {
                         Log.d(PAGE_ONE_TAG, "getLatest() -> vm: $it")
@@ -40,6 +43,7 @@ class PageOneViewModel : ViewModel(), KoinComponent {
     }
 
     fun getFlashSales() {
+        flashSales.value = FlashSalesRvState.Loading
         disposable.add(
             remoteService
                 .getFlashSale()
@@ -48,7 +52,9 @@ class PageOneViewModel : ViewModel(), KoinComponent {
                 .subscribeBy(
                     onNext = {
                         Log.d(PAGE_ONE_TAG, "getFlashSales() -> vm: $it")
-                        flashSales.postValue(it)
+                        flashSales.postValue(
+                            FlashSalesRvState.Success(it)
+                        )
                     },
                     onError = {
                         Log.d(PAGE_ONE_TAG, "getFlashSales() -> vm: $it")
