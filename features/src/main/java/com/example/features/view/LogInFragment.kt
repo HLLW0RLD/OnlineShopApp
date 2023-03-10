@@ -43,7 +43,7 @@ class LogInFragment : Fragment() {
                 btnLogIn.isEnabled = isFieldsEmpty()
             }
 
-            tietPassword.addTextChangedListener {
+            etPassword.addTextChangedListener {
                 btnLogIn.isEnabled = isFieldsEmpty()
             }
 
@@ -74,7 +74,7 @@ class LogInFragment : Fragment() {
 
     private fun isFieldsEmpty(): Boolean {
         firstName = binding?.etFirstName?.text.toString().replace(" ", "")
-        password = binding?.tietPassword?.text.toString().replace(" ", "")
+        password = binding?.etPassword?.text.toString().replace(" ", "")
 
         if (firstName?.trim()?.isNotEmpty() == true
             && password?.trim()?.isNotEmpty() == true
