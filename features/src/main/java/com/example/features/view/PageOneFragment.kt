@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.app.utils.RxSubjects
 import com.example.app.utils.hide
 import com.example.app.utils.show
 import com.example.features.R
@@ -87,8 +88,12 @@ class PageOneFragment : Fragment() {
                 binding?.mainPage?.pbLatest?.show()
             }
             is LatestRvState.Success -> {
-                binding?.mainPage?.pbLatest?.hide()
-                latestAdapter.setData(data.productData)
+                RxSubjects.isAllItemsLoaded.subscribe {
+                    if (it.second){
+                        binding?.mainPage?.pbLatest?.hide()
+                        latestAdapter.setData(data.productData)
+                    }
+                }
             }
         }
     }
@@ -99,8 +104,12 @@ class PageOneFragment : Fragment() {
                 binding?.mainPage?.pbFlashSales?.show()
             }
             is FlashSalesRvState.Success -> {
-                binding?.mainPage?.pbFlashSales?.hide()
-                flashSalesAdapter.setData(data.productData)
+                RxSubjects.isAllItemsLoaded.subscribe {
+                    if (it.first){
+                        binding?.mainPage?.pbFlashSales?.hide()
+                        flashSalesAdapter.setData(data.productData)
+                    }
+                }
             }
         }
     }

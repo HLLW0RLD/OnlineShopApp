@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.app.utils.Constants
+import com.example.app.utils.Constants.LOG_IN_TAG
 import com.example.app.utils.Helper
 import com.example.app.utils.RxSubjects
 import com.example.features.R
@@ -59,7 +59,7 @@ class LogInFragment : Fragment() {
     }
 
     private fun checkSavedUser(checked: Boolean) {
-        if (!checked){
+        if (checked){
             Helper.hideKeyboard(this)
             firstName = binding?.etFirstName?.text.toString().replace(" ", "")
             RxSubjects.nameData.onNext(firstName)
@@ -79,7 +79,7 @@ class LogInFragment : Fragment() {
         if (firstName?.trim()?.isNotEmpty() == true
             && password?.trim()?.isNotEmpty() == true
         ) {
-            Log.d(Constants.SIGN_IN_TAG, "isFieldsEmpty() fields -> $firstName, $password")
+            Log.d(LOG_IN_TAG, "isFieldsEmpty() fields -> $firstName, $password")
             return true
         }
         return false

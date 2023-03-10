@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.app.domain.IRemoteService
 import com.example.app.utils.Constants.PAGE_ONE_TAG
+import com.example.app.utils.RxSubjects
 import com.example.features.utils.FlashSalesRvState
 import com.example.features.utils.LatestRvState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -31,6 +32,7 @@ class PageOneViewModel : ViewModel(), KoinComponent {
                 .subscribeBy(
                     onNext = {
                         Log.d(PAGE_ONE_TAG, "getLatest() -> vm: $it")
+                        RxSubjects.isAllItemsLoaded.onNext(true to false)
                         latest.postValue(
                             LatestRvState.Success(it)
                         )
@@ -52,6 +54,7 @@ class PageOneViewModel : ViewModel(), KoinComponent {
                 .subscribeBy(
                     onNext = {
                         Log.d(PAGE_ONE_TAG, "getFlashSales() -> vm: $it")
+                        RxSubjects.isAllItemsLoaded.onNext(false to true)
                         flashSales.postValue(
                             FlashSalesRvState.Success(it)
                         )
