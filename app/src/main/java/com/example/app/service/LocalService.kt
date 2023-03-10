@@ -6,7 +6,6 @@ import com.example.app.utils.Constants
 import com.example.app.utils.Helper
 import com.example.core.db.UserEntity
 import com.example.core.repository.ILocalRepository
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -31,7 +30,6 @@ class LocalService(private val local: ILocalRepository) : ILocalService {
     override fun delete(firstName: String) {
         local.getUserByName(firstName)
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
                     local.delete(UserEntity(0, it.firstName, it.lastName, it.email))

@@ -12,25 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        testFunForCheck()
         if (savedInstanceState == null) {
             supportFragmentManager.apply {
                 beginTransaction()
                     .add(R.id.container, SignInPageFragment.newInstance())
-//                    .addToBackStack("")
                     .commitAllowingStateLoss()
             }
         }
     }
-
-//    private fun testFunForCheck() {
-//        repo
-//            .getLatest()
-//            .subscribeBy(
-//                onSuccess = {
-//                    Log.d("RepoTag", it.latest.toString())
-//                }
-//            )
-//    }
 }

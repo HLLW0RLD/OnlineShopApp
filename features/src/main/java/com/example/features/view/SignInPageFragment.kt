@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.app.utils.Constants.SIGN_IN_TAG
 import com.example.app.utils.Helper
+import com.example.app.utils.RxSubjects
 import com.example.features.R
 import com.example.features.databinding.FragmentSignInPageBinding
 import com.example.features.viewModel.SignInViewModel
@@ -86,6 +87,7 @@ class SignInPageFragment : Fragment() {
             Log.d(SIGN_IN_TAG, "checkSavedUser() user not exist")
             Helper.hideKeyboard(this)
             viewModel.saveUserData(firstName, lastName, email)
+            RxSubjects.nameData.onNext(firstName)
             activity?.supportFragmentManager?.apply {
                 beginTransaction()
                     .add(R.id.container, PageOneFragment.newInstance())

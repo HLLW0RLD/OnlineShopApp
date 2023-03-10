@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.app.utils.Constants
 import com.example.app.utils.Helper
+import com.example.app.utils.RxSubjects
 import com.example.features.R
 import com.example.features.databinding.FragmentLogInBinding
 import com.example.features.viewModel.LogInViewModel
@@ -47,18 +48,21 @@ class LogInFragment : Fragment() {
             }
 
             btnLogIn.setOnClickListener {
-                firstName = binding?.etFirstName?.text.toString().replace(" ", "")
                 viewModel.isUserSaved.observe(viewLifecycleOwner) {
                     checkSavedUser(it)
                 }
                 viewModel.getUserByName(firstName)
             }
+
+            viewModel.firstNameLiveData.observe(viewLifecycleOwner) { etFirstName.text.toString().replace(" ", "") }
         }
     }
 
     private fun checkSavedUser(checked: Boolean) {
-        if (checked){
+        if (!checked){
             Helper.hideKeyboard(this)
+            firstName = binding?.etFirstName?.text.toString().replace(" ", "")
+            RxSubjects.nameData.onNext(firstName)
             activity?.supportFragmentManager?.apply {
                 beginTransaction()
                     .add(R.id.container, PageOneFragment.newInstance())

@@ -48,6 +48,14 @@ class PageOneFragment : Fragment() {
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             rvBrands.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+            svAvatar.setOnClickListener {
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.add(R.id.container, ProfileFragment.newInstance())
+                    ?.addToBackStack("")
+                    ?.commitAllowingStateLoss()
+            }
         }
 
         binding?.apply {
@@ -57,7 +65,7 @@ class PageOneFragment : Fragment() {
                         R.id.btn_profile -> {
                             activity?.supportFragmentManager
                                 ?.beginTransaction()
-                                ?.replace(R.id.container, ProfileFragment.newInstance())
+                                ?.add(R.id.container, ProfileFragment.newInstance())
                                 ?.commitAllowingStateLoss()
                         }
                     }

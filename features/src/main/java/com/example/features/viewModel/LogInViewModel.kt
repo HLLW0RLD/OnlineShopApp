@@ -15,9 +15,11 @@ import org.koin.core.component.inject
 
 class LogInViewModel : ViewModel(), KoinComponent {
 
-    val isUserSaved: MutableLiveData<Boolean> = MutableLiveData()
     private val localService: ILocalService by inject()
     private val disposable: CompositeDisposable = CompositeDisposable()
+
+    val isUserSaved: MutableLiveData<Boolean> = MutableLiveData()
+    val firstNameLiveData: MutableLiveData<String> = MutableLiveData()
 
     fun getUserByName(name: String?) {
         if (name != null) {
@@ -28,6 +30,7 @@ class LogInViewModel : ViewModel(), KoinComponent {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeBy(
                         onSuccess = {
+                            firstNameLiveData.postValue(name)
                             isUserSaved.postValue(true)
                         },
                         onError = {

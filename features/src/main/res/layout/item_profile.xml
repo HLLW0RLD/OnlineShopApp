@@ -286,7 +286,7 @@
         android:id="@+id/ll_restore"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_trade_history"
@@ -322,11 +322,12 @@
         android:id="@+id/ll_help"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_restore"
         android:layout_marginTop="25dp"
-        android:paddingStart="28dp">
+        android:paddingStart="28dp"
+        android:background="@drawable/ic_ripple_background_white">
 
         <TextView
             android:id="@+id/tv_help"
@@ -346,7 +347,7 @@
         android:id="@+id/ll_log_out"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_help"
@@ -356,7 +357,7 @@
 
         <TextView
             android:id="@+id/tv_log_out"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="Log out"
