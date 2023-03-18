@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">OnlineShopApp</string>
+
+    <!-- Sign in -->
+    <string name="tv_title_sign_in">Sign in</string>
+    <string name="et_first_name">First name</string>
+    <string name="et_last_name">Last name</string>
+    <string name="et_email">Email</string>
+    <string name="et_sign_in">Sign in</string>
+    <string name="subtext_already_have_an_account">Already have an account?</string>
+    <string name="btn_log_in">Log in</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_with_apple">Sign in with Apple</string>
+
+    <!-- Log in -->
+    <string name="tv_log_in_title">Welcome back</string>
+    <string name="et_password">Password</string>
+
+</resources>

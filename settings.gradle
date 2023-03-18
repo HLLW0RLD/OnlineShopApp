@@ -15,5 +15,8 @@ dependencyResolutionManagement {
 rootProject.name = "OnlineShopApp"
 include ':app'
 include ':api'
-include ':features'
+include ':entrance'
 include ':core'
+include ':home'
+include ':profile'
+include ':utils'

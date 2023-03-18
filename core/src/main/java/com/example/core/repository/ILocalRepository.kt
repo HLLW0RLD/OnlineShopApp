@@ -5,9 +5,9 @@ import io.reactivex.rxjava3.core.Single
 
 interface ILocalRepository {
 
-    fun insert(data: UserEntity)
+    fun insert(firstName: String, lastName: String, email: String)
 
     fun getUserByName(name: String): Single<UserEntity>
 
-    fun delete(data: UserEntity)
+    fun delete(firstName: String)
 }

@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
@@ -10,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-
+        applicationId "com.example.onlineshopapp"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -40,7 +40,10 @@ android {
 dependencies {
 
     //Modules
-    implementation project(path: ':api')
+    implementation project(path: ':entrance')
+    implementation project(path: ':home')
+    implementation project(path: ':profile')
+    implementation project(path: ':utils')
     implementation project(path: ':core')
 
     //Retrofit
