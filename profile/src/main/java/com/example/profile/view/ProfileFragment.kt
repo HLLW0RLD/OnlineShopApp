@@ -1,6 +1,7 @@
 package com.example.profile.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,22 @@ import androidx.fragment.app.viewModels
 import com.example.profile.viewModel.ProfileViewModel
 import com.example.profile.R
 import com.example.profile.databinding.FragmentProfileBinding
+import com.example.utils.extentions.Constants
+import com.example.utils.extentions.Constants.TEST_TAG
 import com.example.utils.extentions.Helper
 import com.example.utils.subject.RxNavigationSubjects
 
 class ProfileFragment : Fragment() {
     companion object {
-        fun newInstance() = ProfileFragment()
+        const val USER_NAME = "user_name"
+
+        fun newInstance(name: String): ProfileFragment {
+            val fragment = ProfileFragment()
+            fragment.arguments = Bundle().apply {
+                putString(USER_NAME, name)
+            }
+            return fragment
+        }
     }
 
     var binding: FragmentProfileBinding? = null
@@ -33,23 +44,18 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO replace to args
-//        RxSubjects.nameData.subscribe {
-//            viewModel.firstNameLiveData.value = it
-//            firstName = it
-//        }
+        viewModel.firstNameLiveData.value = arguments?.getString(USER_NAME)
+
+        firstName = arguments?.getString(USER_NAME)
 
         binding?.profile?.llLogOut?.setOnClickListener {
-//            val context = activity?.applicationContext
             Helper.toastShort(context, "Your account has been deleted")
-            // TODO open sign in
             RxNavigationSubjects.openSignInPage.onNext("")
             viewModel.logOut(firstName)
         }
 
         binding?.profile?.ivBack?.setOnClickListener {
             activity?.supportFragmentManager
-                // TODO open main page
             RxNavigationSubjects.openMainPage.onNext("")
         }
 
@@ -58,7 +64,6 @@ class ProfileFragment : Fragment() {
                 it.setOnItemSelectedListener { item ->
                     when (item.itemId) {
                         R.id.btn_home -> {
-                            // TODO open main page
                             RxNavigationSubjects.openMainPage.onNext("")
                         }
                     }

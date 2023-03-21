@@ -60,10 +60,8 @@ class LogInFragment : Fragment() {
     private fun checkSavedUser(checked: Boolean) {
         if (checked){
             Helper.hideKeyboard(this)
-            // TODO open main page
-            RxNavigationSubjects.openMainPage.onNext("")
+            RxNavigationSubjects.openMainPage.onNext(firstName!!)
             firstName = binding?.etFirstName?.text.toString().replace(" ", "")
-//            RxSubjects.nameData.onNext(firstName)
         } else {
             Helper.toastShort(context, "User with this name already exist")
         }

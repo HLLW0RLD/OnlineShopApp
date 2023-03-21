@@ -8,7 +8,8 @@ import com.example.api.data.ProductDTO
 import com.example.home.R
 import com.example.home.databinding.ItemRvFlashSalesBinding
 
-class FlashSalesAdapter(val priceStr: String?, val discountStr: String?): RecyclerView.Adapter<FlashSalesAdapter.MainViewHolder>() {
+class FlashSalesAdapter(val priceStr: String?, val discountStr: String?):
+    RecyclerView.Adapter<FlashSalesAdapter.MainViewHolder>() {
 
     private var productData: List<ProductDTO> = listOf()
 

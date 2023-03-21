@@ -2,12 +2,14 @@ package com.example.app.base.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.entrance.view.LogInFragment
 import com.example.entrance.view.SignInPageFragment
 import com.example.home.view.PageOneFragment
 import com.example.onlineshopapp.R
 import com.example.onlineshopapp.databinding.ActivityMainBinding
 import com.example.profile.view.ProfileFragment
+import com.example.utils.extentions.Constants
 import com.example.utils.subject.RxNavigationSubjects
 
 class MainActivity : AppCompatActivity() {
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     private fun openProfilePage() {
         supportFragmentManager.apply {
             beginTransaction()
-                .add(R.id.container, ProfileFragment.newInstance())
+                .add(R.id.container, ProfileFragment.newInstance(userName))
                 .addToBackStack("")
                 .commitAllowingStateLoss()
         }

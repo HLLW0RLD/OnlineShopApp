@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.api.data.ProductDTO
-import com.example.home.R
 import com.example.home.databinding.ItemRvLatestBinding
 
 class LatestAdapter(val priceStr: String?) : RecyclerView.Adapter<LatestAdapter.MainViewHolder>() {

@@ -53,7 +53,6 @@ class PageOneFragment : Fragment() {
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
             svAvatar.setOnClickListener {
-                // TODO open profile page
                 RxNavigationSubjects.openProfilePage.onNext("")
             }
         }
@@ -63,7 +62,6 @@ class PageOneFragment : Fragment() {
                 it.setOnItemSelectedListener { item ->
                     when(item.itemId) {
                         R.id.btn_profile -> {
-                            // TODO open profile page
                             RxNavigationSubjects.openProfilePage.onNext("")
                         }
                     }

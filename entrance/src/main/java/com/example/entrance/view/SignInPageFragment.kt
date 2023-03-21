@@ -37,11 +37,8 @@ class SignInPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val context = activity?.applicationContext
-
         binding?.apply {
             tvLogin.setOnClickListener {
-                // TODO open log in page
                 RxNavigationSubjects.openLogInPage.onNext("")
             }
 
@@ -60,7 +57,6 @@ class SignInPageFragment : Fragment() {
             btnSignIn.setOnClickListener {
                 if (isFieldsEmpty()) {
                     if (!checkEmail(email)) {
-
                         Helper.toastShort(context, "Email address not valid")
                     } else {
                         if (firstName != null && lastName != null && email != null) {
@@ -82,12 +78,10 @@ class SignInPageFragment : Fragment() {
 
     private fun checkSavedUser(checked: Boolean) {
         if (!checked){
-            // TODO open main page
             RxNavigationSubjects.openMainPage.onNext(firstName!!)
             Log.d(SIGN_IN_TAG, "checkSavedUser() user not exist")
             Helper.hideKeyboard(this)
             viewModel.saveUserData(firstName, lastName, email)
-//            RxSubjects.nameData.onNext(firstName)
         } else {
             Helper.toastShort(context, "User with this name already exist")
         }
